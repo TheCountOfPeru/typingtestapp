@@ -55,7 +55,7 @@ namespace Test
         static void BeforeTestEvent()
         {
 
-            Console.WriteLine("Typing test starting soon. Press spacebar to start. \r\nTest sentence will be displayed and you can start typing. \r\nPress enter when complete.\r\n");
+            Console.WriteLine("Typing test starting soon. \r\nTest sentence will be displayed and you can start typing. \r\nPress enter when complete. \r\nPress spacebar to start. ");
             ConsoleKeyInfo keyinfo;
             do
             {
@@ -63,7 +63,7 @@ namespace Test
 
             }
             while (keyinfo.Key != ConsoleKey.Spacebar);
-            Console.WriteLine("\r\n\r\n\r\n");
+            Console.WriteLine("\r\n");
             state = (int)Event.CreateTest;
         }
         static void CreateTest()
@@ -110,13 +110,14 @@ namespace Test
                 testsentence = testsentence.Substring(0, UserInput.Length);
             }
             int numberoferrors = findNumberOfErrorsBetweenStrings(testsentence, UserInput);
-            Console.WriteLine("\r\ntype test completed.");
-            Console.WriteLine("Elapsed Time is {0} ms", stopwatch.ElapsedMilliseconds);
+            Console.WriteLine("\r\nTyping test completed.");
+            Console.WriteLine("Elapsed Time is {0} ms.", stopwatch.ElapsedMilliseconds);
             double wpm = ((UserInput.Length / 5.0) - numberoferrors) / (stopwatch.ElapsedMilliseconds / 60000.0);
-            Console.WriteLine(UserInput.Length);
-            Console.WriteLine("Errors found:{0}.", numberoferrors);
+            Console.WriteLine("You typed {0} characters.", UserInput.Length);
+            Console.WriteLine("Errors found: {0}.", numberoferrors);
             Console.Write("Your WPM is: ");
             Console.WriteLine(string.Format("{0:0.##}", wpm));
+            stopwatch.Reset();
             state = (int)Event.AskToRepeatTest;
         }
         static int findNumberOfErrorsBetweenStrings(string testStr, string inputStr)
