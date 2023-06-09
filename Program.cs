@@ -54,7 +54,7 @@ namespace Test
 
         static void BeforeTestEvent()
         {
-
+            Console.Clear();
             Console.WriteLine("Typing test starting soon. \r\nTest sentence will be displayed and you can start typing. \r\nPress enter when complete. \r\nPress spacebar to start. ");
             ConsoleKeyInfo keyinfo;
             do
@@ -140,7 +140,7 @@ namespace Test
                 string? input = Console.ReadLine();
                 if (input == "y")
                 {
-                    Console.Clear();
+                    
                     state = (int)Event.BeforeTestEvent;
                     break;
                 }
